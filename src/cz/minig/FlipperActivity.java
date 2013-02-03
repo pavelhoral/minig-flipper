@@ -85,17 +85,14 @@ public class FlipperActivity extends Activity implements OnClickListener {
         int min = 5;
         while (min > 0 || Math.random() < 0.8) {
             min--;
-            onClick(flippers[(int) (Math.random() * flippers.length)]);
+            executeFlipper((int) (Math.random() * flippers.length));
         }
     }
 
     @Override
     public void onClick(View v) {
-        Flipper flipper = ((Flipper) v);
         // Do the flipping
-        for (int i = 0; i < flips[flipper.getIndex()].length; i++) {
-            flippers[flips[flipper.getIndex()][i]].reverseState();
-        }
+        executeFlipper(((Flipper) v).getIndex());
         // Check for finish state
         boolean finished = true;
         for (int i = 0; i < flippers.length; i++) {
@@ -106,6 +103,12 @@ public class FlipperActivity extends Activity implements OnClickListener {
         }
         if (finished) {
             finishDialog.show();
+        }
+    }
+
+    private void executeFlipper(int index) {
+        for (int i = 0; i < flips[index].length; i++) {
+            flippers[flips[index][i]].reverseState();
         }
     }
 

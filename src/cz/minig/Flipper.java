@@ -22,12 +22,13 @@ public class Flipper extends View {
     private Bitmap picture;
     private Rect sourceRect;
     private Rect targetRect;
+    private Rect strokeRect;
     private Paint framePaint = new Paint();
 
     public Flipper(Context context) {
         super(context);
         framePaint.setStrokeWidth(0);
-        framePaint.setColor(Color.GRAY);
+        framePaint.setColor(Color.BLACK);
         framePaint.setStyle(Paint.Style.STROKE);
     }
 
@@ -38,7 +39,7 @@ public class Flipper extends View {
         } else {
             canvas.drawColor(Color.BLACK);
         }
-        canvas.drawRect(targetRect, framePaint);
+        canvas.drawRect(strokeRect, framePaint);
     }
 
     @Override
@@ -48,6 +49,7 @@ public class Flipper extends View {
         }
         sourceRect = createSourceRect(w, h);
         targetRect = new Rect(0, 0, w, h);
+        strokeRect = new Rect(0, 0, w - 1, h - 1);
     }
 
     private Rect createSourceRect(int tileWidth, int tileHeight) {
