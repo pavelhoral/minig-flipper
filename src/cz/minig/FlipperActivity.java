@@ -12,7 +12,7 @@ import android.widget.LinearLayout.LayoutParams;
 
 public class FlipperActivity extends Activity {
 
-    private static final String ON_TEXT = "O";
+    private static final String ON_TEXT = "";
     private static final String OFF_TEXT = "X";
 
     private int cols = 3;
